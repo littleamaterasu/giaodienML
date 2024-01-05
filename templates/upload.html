@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Upload</title>
+</head>
+<body>
+    <h1>Image Upload</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" multiple="multiple" name="files[]" accept="image/*">
+        <br>
+        <input type="submit" value="Upload">
+    </form>
+    <div>
+        {%for name in name_list:%}
+            <h3>{{name}}</h3>
+        {%endfor%}
+    </div>
+    <form action="/results" method="get">
+        <input type="submit" value="Process">
+    </form>
+</body>
+</html>
