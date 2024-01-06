@@ -1,0 +1,9 @@
+.results ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.results ul li img{
+
+}

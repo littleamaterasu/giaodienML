@@ -2,17 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .results {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #1e87c5;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        {%for filename in name_list:%}
-            <img src={{filename}} alt="Uploaded Image">
-            <h3>{{filename}}</h3>
-        {%endfor%}
+    <div class="results">
+        <ul>
+            {% for filename in name_list %}
+            <li>
+                <h3>{{ filename }}</h3>
+                <a href="{{ url_for('download', filename=filename) }}">
+                    <button>Download</button>
+                </a>
+                <img src="{{ filename }}" alt="Uploaded Image">
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>

@@ -1,5 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from typing import List
+import numpy as np
+import cv2
+from flask import Flask, render_template, request, redirect, url_for, send_file
 import os
+
+from werkzeug.datastructures import FileStorage
 
 app = Flask(__name__)
 
@@ -24,28 +29,36 @@ def index():
 
 
 name_list = []
+res = []
 
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    if 'files[]' not in request.files:
-        return redirect(request.url)
+    if request.method == 'POST':
+        if 'files[]' not in request.files:
+            return redirect(request.url)
 
-    files = request.files.getlist('files[]')
+        files = request.files.getlist('files[]')
 
-    for file in files:
-        if file and allowed_file(file.filename):
-            filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-            file.save(filename)
-            if filename not in name_list:
-                name_list.append(filename)
+        for file in files:
+            if file and allowed_file(file.filename):
+                filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+                file.save(filename)
+                if filename not in name_list:
+                    name_list.append(filename)
+                    res.append(filename)
 
     return render_template('upload.html', name_list=name_list)
 
 
 @app.route('/results', methods=['GET'])
 def show_image():
-    return render_template('results.html', name_list=name_list)
+    return render_template('results.html', name_list=res)
+
+
+@app.route('/download/<filename>')
+def download(filename):
+    return send_file(filename, as_attachment=True)
 
 
 if __name__ == '__main__':
