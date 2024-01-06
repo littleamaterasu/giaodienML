@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Image Upload</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             text-align: center;
             padding: 20px;
+            display: flex;
+            justify-content: center;
         }
 
         h1 {
             color: #3498db;
+        }
+
+        .upload-container {
+            width: 50%;
         }
 
         form {
@@ -19,18 +28,38 @@
 
         input[type="file"] {
             margin-bottom: 10px;
+            width: 30%;
         }
 
         input[type="submit"] {
             background-color: #3498db;
             color: #fff;
-            padding: 10px 20px;
+            padding: 8px 16px; /* Adjusted padding */
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: 30%;
+            font-size: 14px; /* Adjusted font size */
         }
 
-        div {
+        .images-container {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Distribute items with space between them */
+            gap: 10px;
+        }
+
+        img {
+            max-width: 31%; /* Set the maximum width to 30% for 3 images in each row */
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px; /* Add margin at the bottom for spacing */
+        }
+
+        .results {
             margin-top: 20px;
         }
 
@@ -40,19 +69,24 @@
     </style>
 </head>
 <body>
-    <h1>Image Upload</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" multiple="multiple" name="files[]" accept="image/*">
-        <br>
-        <input type="submit" value="Upload">
-    </form>
-    <div>
-        {% for name in name_list %}
-            <h3>{{ name }}</h3>
+    <div class="upload-container">
+        <h1>Image Upload</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" multiple="multiple" name="files[]" accept="image/*">
+            <br>
+            <input type="submit" value="Upload">
+        </form>
+        <form action="/results" method="get">
+            <input type="submit" value="Process">
+        </form>
+        {% for filename in name_list %}
+            <h3>{{filename}}</h3>
         {% endfor %}
     </div>
-    <form action="/results" method="get">
-        <input type="submit" value="Process">
-    </form>
+    <div class="images-container">
+        {% for filename in name_list %}
+            <img src="{{ filename }}" alt="Uploaded Image">
+        {% endfor %}
+    </div>
 </body>
 </html>

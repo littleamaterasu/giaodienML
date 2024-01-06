@@ -4,60 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome to Our Project</title>
+    <title>Welcome to Our Exciting World</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #4f4f4f;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 20px;
-            color: #fff; /* Change text color for better visibility on the background */
+            text-align: center;
         }
 
-        h1, h3 {
-            color: #3498db;
+        h1 {
+            color: #007bff;
         }
 
         p {
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #fff; /* Change text color for better visibility on the background */
+            margin-top: 20px;
+            color: #333;
+            font-size: 18px;
+            line-height: 1.5;
         }
 
-        a {
-            text-decoration: none;
-            display: inline-block;
-            background-color: #3498db;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        a:hover {
-            background-color: #1e87c5;
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         button {
-            background-color: #3498db;
+            background-color: #007bff;
             color: #fff;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            border-radius: 8px;
             font-size: 16px;
-            transition: background-color 0.3s;
+            cursor: pointer;
+            margin-top: 30px;
         }
 
         button:hover {
-            background-color: #1e87c5;
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Our Project</h1>
-    <h3>Lorem Ipsum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet ullamcorper augue...</p>
+    <h1>Welcome to Our Exciting World</h1>
+    <p>Embark on a journey filled with innovation, creativity, and endless possibilities. Our platform is designed to inspire and empower you. Explore the amazing features that await you!</p>
+    <img src="https://placekitten.com/800/400" alt="Exciting Image">
     <a href="{{ url_for('index') }}"><button>TO THE PROJECT</button></a>
 </body>
 </html>

@@ -1,16 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Image Results</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 20px;
+            text-align: center;
+        }
+
+        .back-button {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: inline-block;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
         }
 
         .results {
@@ -26,8 +48,9 @@
         li {
             background-color: #fff;
             margin-bottom: 20px;
-            padding: 10px;
+            padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
 
         h3 {
@@ -39,31 +62,38 @@
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 0 auto;
+            margin: 20px auto;
+            border-radius: 5px;
         }
 
         a {
             text-decoration: none;
-            color: #3498db;
+            color: #007bff;
             cursor: pointer;
         }
 
         button {
-            background-color: #3498db;
+            background-color: #007bff;
             color: #fff;
-            padding: 8px 12px;
+            padding: 10px 15px;
             border: none;
             cursor: pointer;
             font-size: 14px;
-            margin-right: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
         }
 
         button:hover {
-            background-color: #1e87c5;
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
+    <div class="back-button">
+        <form action="/index" method="get">
+            <input type="submit" value="Back to Upload">
+        </form>
+    </div>
     <div class="results">
         <ul>
             {% for filename in name_list %}
