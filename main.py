@@ -23,7 +23,7 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/index')
+@app.route('/upload')
 def index():
     return render_template('upload.html')
 
