@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 from flask import Flask, render_template, request, redirect, url_for, send_file
 import os
+import json
 
 from werkzeug.datastructures import FileStorage
 
@@ -28,8 +29,9 @@ def index():
     return render_template('upload.html')
 
 
-name_list = []
-res = []
+pic_list = []
+#{"filename": tên file, "img": ảnh}
+#sau khi upload ảnh sẽ lưu ở đây
 
 
 @app.route('/upload', methods=['POST'])
@@ -44,21 +46,42 @@ def upload_file():
             if file and allowed_file(file.filename):
                 filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
                 file.save(filename)
-                if filename not in name_list:
-                    name_list.append(filename)
-                    res.append(filename)
+                if filename not in [file["filename"] for file in pic_list]:
+                    pic_list.append({"filename": filename, "img": file})
 
-    return render_template('upload.html', name_list=name_list)
+    return render_template('upload.html', name_list=pic_list)
+
+
+res = []
+
+
+def load_model():
+    return 1
+
+
+def predict():
+    for item in pic_list:
+        #predict -> a.json
+
+        with open('static/results/a.json', 'r') as json_file:
+            data = json.load(json_file)
+
+        if item["filename"] not in [file["filename"] for file in res]:
+            res.append({"filename": item["filename"], "img": item["img"], "json": data})
+    return res
 
 
 @app.route('/results', methods=['GET'])
 def show_image():
+    res = predict()
     return render_template('results.html', name_list=res)
 
 
-@app.route('/download/<filename>')
-def download(filename):
-    return send_file(filename, as_attachment=True)
+@app.route('/download/<jsondata>')
+def download(jsondata):
+    with open('static/results/data.json', 'w') as data:
+        json.dump(jsondata, data, indent=2)
+    return send_file('static/results/data.json', as_attachment=True)
 
 
 if __name__ == '__main__':

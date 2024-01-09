@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Image Results</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to right, #f59678, #00bfff);
             margin: 0;
             padding: 20px;
-            text-align: center;
         }
 
         .back-button {
@@ -23,8 +23,8 @@
         }
 
         input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #000000;
+            color: aliceblue;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -32,11 +32,12 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #ffffff;
+            color: black;
         }
 
         .results {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -53,13 +54,22 @@
             border-radius: 10px;
         }
 
+        h1 {
+            font-size: 50px;
+        }
+
         h3 {
+            font-size: 15px;
             margin-bottom: 10px;
             color: #333;
         }
 
+        p {
+            font-size: 20px;
+        }
+
         img {
-            max-width: 100%;
+            max-width: 80%;
             height: auto;
             display: block;
             margin: 20px auto;
@@ -78,7 +88,7 @@
             padding: 10px 15px;
             border: none;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 20px;
             border-radius: 5px;
             margin-top: 10px;
         }
@@ -86,12 +96,15 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .data{
+            display: flex;
+        }
     </style>
 </head>
 <body>
     <div class="back-button">
-        <form action="/upload"
-              method="get">
+        <form action="/upload" method="get">
             <input type="submit" value="Back to Upload">
         </form>
     </div>
@@ -99,11 +112,22 @@
         <ul>
             {% for filename in name_list %}
             <li>
-                <h3>{{ filename }}</h3>
-                <a href="{{ url_for('download', filename=filename) }}">
-                    <button>Download</button>
-                </a>
-                <img src="{{ filename }}" alt="Uploaded Image">
+
+                <div class="data">
+                    <img src="{{ filename['filename'] }}" alt="Uploaded Image">
+                    <div class="json">
+                        {% for item in filename['json'] %}
+                            <h3>id: {{item.id}}</h3>
+                            <h3>gender: {{item.gender}}</h3>
+                            <h3>age: {{item.age}}</h3>
+                            <h3>emotion: {{item.emotion}}</h3>
+                        {% endfor %}
+                        <a href="{{ url_for('download', jsondata = filename['json']) }}">
+                            <button>Download</button>
+                        </a>
+                    </div>
+                </div>
+
             </li>
             {% endfor %}
         </ul>

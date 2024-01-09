@@ -4,55 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome to Our Exciting World</title>
+    <title>Project</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            background: linear-gradient(to right, #f59678, #00bfff);
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 20px;
-            text-align: center;
         }
-
         h1 {
-            color: #007bff;
+            font-size: 50px;
         }
 
         p {
-            margin-top: 20px;
-            color: #333;
-            font-size: 18px;
+            font-size: 25px;
+            margin-top: 10px;
             line-height: 1.5;
         }
 
+        h3{
+            font-size: 40px;
+            marin-top: 20px;
+            line-height: 1.5;
+        }
         img {
             max-width: 100%;
             height: auto;
             margin-top: 30px;
+            padding: 20px 20px 20px 20px;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 15px 30px;
+            width: 300px;
+            height: 100px;
+            background-color: aliceblue;
+            color: #000000;
+            padding: 15px 30px 15px 20px;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 20px;
             cursor: pointer;
             margin-top: 30px;
         }
 
         button:hover {
             background-color: #0056b3;
+            color: aliceblue;
+        }
+
+        .intro{
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 50px;
+            height: 90vh;
+            background-color: #395463;
+            color: white;
+        }
+
+        .step2, .thank {
+            padding-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background-color: black;
+            color: white;
+        }
+
+        .step1, .step3 {
+            padding-top: 10px;
+            margin: 0%;
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            color: black;
+        }
+        .step1 div{
+            padding-left: 50px;
+            padding-right: 20px;
+        }
+
+        .step2 div{
+            padding-left: 20px;
+            padding-right: 50px;
+        }
+
+        .step3 div{
+            padding-left: 50px;
+            padding-right: 20px;
+        }
+
+        .step4 div{
+            padding-left: 20px;
+            padding-right: 50px;
+        }
+
+        .thank button{
+            margin-right: 100px
+        }
+
+        .thank div{
+            margin-left: 50px
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Our Exciting World</h1>
-    <p>Embark on a journey filled with innovation, creativity, and endless possibilities. Our platform is designed to inspire and empower you. Explore the amazing features that await you!</p>
-    <img src="https://picsum.photos/800/400" alt="Exciting Image">
-    <a href="{{ url_for('index') }}"><button>TO THE PROJECT</button></a>
+    <div class="intro">
+        <h1>Group 5's Introduction to Machine Learning and Data Mining Project</h1>
+        <p>We introduce a facial analysis pipeline that utilizes YOLO for face cropping and a combination of
+            CNN, ResNet, and VGG16 models to predict age, gender, and emotion.
+            It supports fast prediction and data aggregation even with large volumes of images.
+        </p>
+        <a href="{{ url_for('index') }}"><button>START PREDICTING</button></a>
+        <h3>Instruction below ↓</h3>
+    </div>
+
+    <div class="step1">
+        <div>
+            <h1>Step 1: Upload Necessary Photos</h1>
+            <p>Upload all the photos needed for facial recognition and predictions of age, emotion, and gender by clicking the "Upload" button.</p>
+        </div>
+        <img src="https://picsum.photos/600/300" alt="Step 1"/>
+    </div>
+
+    <div class="step2">
+        <img src="https://picsum.photos/600/300" alt="Step 2"/>
+        <div>
+            <h1>Step 2: Perform Predictions</h1>
+            <p>After uploading the necessary photos, click the "Process" button and wait for the machine learning model to perform the necessary steps to make predictions for you.</p>
+        </div>
+    </div>
+
+    <div class="step3">
+        <div>
+            <h1>Step 3: Download Results</h1>
+            <p>After processing, the photos will have facial regions and corresponding parameters. If necessary, download the data by clicking the "Download" button on each photo or download all with the "Download All" button.</p>
+        </div>
+        <img src="https://picsum.photos/600/300" alt="Step 3"/>
+    </div>
+
+    <div class="thank">
+        <div>
+            <h1>Many Thanks</h1>
+            <p>Hope you enjoy our project!!!</p>
+        </div>
+        <a href="{{ url_for('index') }}"><button>TO THE PROJECT</button></a>
+    </div>
 </body>
 </html>
